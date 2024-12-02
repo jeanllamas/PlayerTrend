@@ -1,0 +1,60 @@
+{% extends 'inicio.html' %}
+{% block body %}
+<style>
+	.carregando-sobrepor {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 10;
+	}
+
+	#conteudo {
+		position: relative;
+		display: none;
+	}
+
+	#graficoMeses {
+		width: 100%;
+		height: 400px;
+	}
+
+	.col-grafico {
+		min-height: 300px;
+	}
+</style>
+<div class="container my-5 position-relative">
+	<div class="carregando-sobrepor" id="carregando">
+		<div class="spinner-border text-primary" role="status">
+			<span class="visually-hidden">Carregando...</span>
+		</div>
+	</div>
+	<div class="row" id="conteudo">
+		<div class="col col-grafico">
+			<canvas id="graficoMeses"></canvas>
+		</div>
+		<div class="col">
+			<div class="row row-cols-auto align-items-center">
+				<div class="col">
+					<img id="imagemJogo" src="" alt="Imagem do Jogo">
+				</div>
+				<div class="col text-start">
+					<h3 id="nomeJogo"></h3>
+					<p id="tendencia"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script>
+	const id_jogo = "{{ id_jogo }}"
+</script>
+<script src="{{ url_for('static', filename='js/carregar_dados.js') }}"></script>
+{% endblock %}
