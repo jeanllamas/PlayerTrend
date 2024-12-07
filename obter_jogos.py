@@ -7,7 +7,6 @@ def obter_jogos(ultimo_appid=None):
     if ultimo_appid:
         url += f"&last_appid={ultimo_appid}"
 
-    # Realizar a requisição GET
     response = requests.get(url)
     response.raise_for_status()
     return response.json()

@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 from waitress import serve
 from bs4 import BeautifulSoup
-import logging, requests, locale, sqlite3, re, unicodedata
+import logging, requests, locale, sqlite3, re
 
 logging.basicConfig(level=logging.DEBUG)
 
