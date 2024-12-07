@@ -138,5 +138,5 @@ def paginaJogo(id_jogo):
 
 
 if __name__ == "__main__":
-    # serve(playertrend, host="127.0.0.1", port=4004)
-    playertrend.run(host="127.0.0.1", port=4004, debug=True)
+    serve(playertrend, host="127.0.0.1", port=4004)
+    # playertrend.run(host="127.0.0.1", port=4004, debug=True)
