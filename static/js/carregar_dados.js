@@ -11,6 +11,12 @@ async function buscarDadosJogo() {
 				<div class="alert alert-danger" role="alert">
 					${dados_jogo.erro}
 				</div>
+				<div class="row pt-5">
+					<div id="col">
+						<a class="btn btn-primary" href="/" role="button"><i
+								class="bi bi-chevron-left"></i> Voltar</a>
+					</div>
+				</div>
 			`;
 			return;
 		}
@@ -72,6 +78,12 @@ async function buscarDadosJogo() {
 		document.getElementById("conteudo").innerHTML = `
 			<div class="alert alert-danger" role="alert">
 				Houve um erro ao carregar os dados do jogo.
+			</div>
+			<div class="row pt-5">
+				<div id="col">
+					<a class="btn btn-primary" href="/" role="button"><i
+							class="bi bi-chevron-left"></i> Voltar</a>
+				</div>
 			</div>
 		`;
 	} finally {

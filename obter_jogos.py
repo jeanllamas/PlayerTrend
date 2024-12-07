@@ -3,11 +3,10 @@ from playertrend import normalizar_pesquisa as normalizar_nome
 
 
 def obter_jogos(ultimo_appid=None):
-    url = f"https://api.steampowered.com/IStoreService/GetAppList/v1/?key=6D40821B63F2E6056C2A0940D39DE004&include_games=true&include_dlc=false&include_software=false&include_videos=false&include_hardware=false&max_results=50000"
+    url = f"SUA URL DE API AQUI ENTRE AS ASPAS DUPLAS"
     if ultimo_appid:
         url += f"&last_appid={ultimo_appid}"
 
-    # Realizar a requisição GET
     response = requests.get(url)
     response.raise_for_status()
     return response.json()

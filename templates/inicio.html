@@ -7,54 +7,169 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
 	<title>PlayerTrend para Steam - PI 2024/2</title>
+	<style>
+		@font-face {
+			font-family: "Motiva Sans";
+			src: url(../static/fonts/MotivaSansBold.woff.ttf);
+		}
+	</style>
 </head>
 
 <body>
-	<div class="container-fluid text-center my-5">
-		<div class="row">
-			<h3><b>Universidade de Sorocaba (UNISO)</b></h3>
-			<h5>Projeto Integrador: Analista de Dados</h5>
-		</div>
-		<div class="row py-2"></div>
-		<div class="row pt-5">
-			<h1><b>PlayerTrend para Steam</b></h1>
-			<h6>por Jean Augusto Llamas da Silva (ADS - 5º Semestre)</h6>
-		</div>
-		<div class="row py-4"></div>
-		<div class="row pt-5"></div>
+	<div class="container-fluid">
 		{% block body %}
-		<form class="needs-validation" action="/busca" method="POST" autocomplete="off" novalidate>
-			<div class="row">
-				<label for="validarNome" class="form-label">Insira abaixo o nome do jogo</label>
-				<div class="input-group has-validation" style="max-width: 430px; margin: 0 auto;">
-					<input class="form-control text-center" type="text" id="validarNome" name="validarNome"
-						placeholder="DARK SOULS III" required />
-					<div class="invalid-feedback">Insira um nome válido.</div>
+		<div class="row">
+			<div class="col ps-4">
+				<div class="container-fluid d-flex flex-column" style="min-height: 95vh">
+					<div class="d-flex flex-column justify-content-end" style="flex-grow: 1;">
+						<div class="row" style="text-align: justify;">
+							<h4>O que este projeto faz?</h4>
+							<ul>
+								<li>
+									<h5>Pesquisa jogos da Steam</h5>
+									<p>Digite o nome de um jogo para encontrar informações.</p>
+								</li>
+								<li>
+									<h5>Analisa dados de jogadores</h5>
+									<p>Mostra um gráfico com a evolução do número médio de jogadores nos últimos meses.
+									</p>
+								</li>
+								<li>
+									<h5>Prevê tendências</h5>
+									<p>Oferece uma previsão simples sobre o aumento ou queda no número de jogadores.</p>
+								</li>
+							</ul>
+						</div>
+						<div class="row" style="text-align: justify;">
+							<h4>Por que é útil?</h4>
+							<ul>
+								<li>
+									<p>Ajuda jogadores a entenderem a popularidade de jogos.</p>
+								</li>
+								<li>
+									<p>Fornece insights rápidos para desenvolvedores e entusiastas.</p>
+								</li>
+								<li>
+									<p>Oferece dados em tempo real extraídos diretamente da Steam.</p>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
-				{% if jogos %}
-				<div>Houve mais de um resultado para a sua busca:</div>
-				<ul>
-					{% for jogo in jogos %}
-					<li>
-						<a href="{{ url_for('paginaJogo', id_jogo=jogo[0]) }}">
-							{{ jogo[1] }}
-						</a>
-					</li>
-					{% endfor %}
-				</ul>
-				{% else %}
-				<div class="text-danger mt-2">{{ erro }}</div>
-				{% endif %}
 			</div>
-			<div class="row py-4">
-				<div class="col">
-					<button class="btn btn-primary" type="submit">Procurar <i class="bi bi-search"></i></button>
+			<div class="col-6">
+				<div class="container-fluid d-flex flex-column text-center" style="min-height: 100vh">
+					<div class="d-flex flex-column justify-content-evenly" style="gap: 90px; flex-grow: 1;">
+						<div class="row text-center">
+							<img src="{{ url_for('static', filename='img/uniso.png') }}" class="mx-auto"
+								style="width:auto; padding-bottom:10px; aspect-ratio:auto;">
+							<h4>Projeto Integrador: Analista de Dados</h4>
+						</div>
+						<div class="row">
+							<h1><b>PlayerTrend para </b><img src="{{ url_for('static', filename='img/steam.png') }}"
+									style="width: 64px; padding-bottom: 8px; margin-inline-end:4px;"><span
+									style="font-family: 'Motiva Sans'; letter-spacing: 2px;">STEAM<span
+										style="font-size: 18px; text-align:start; vertical-align:text-top;">®</span></span>
+							</h1>
+						</div>
+						<div class="row" style="margin-top: -90px;">
+							<form class="needs-validation" action="/busca" method="POST" autocomplete="off" novalidate>
+								<div class="row">
+									<label for="validarNome" class="form-label">Insira abaixo o nome do jogo</label>
+									<div class="input-group has-validation" style="max-width: 430px; margin: 0 auto;">
+										<input class="form-control text-center" type="text" id="validarNome"
+											name="validarNome" placeholder="DARK SOULS III" required autofocus />
+										<div class="invalid-feedback">Insira um nome válido.</div>
+									</div>
+									{% if jogos %}
+									<div class="py-2">Houve mais de um resultado para a sua busca:</div>
+									<ul class="list-unstyled">
+										{% for jogo in jogos %}
+										<li>
+											<a href="{{ url_for('paginaJogo', id_jogo=jogo[0]) }}">
+												{{ jogo[1] }}
+											</a>
+										</li>
+										{% endfor %}
+									</ul>
+									{% else %}
+									<div class="text-danger mt-2">{{ erro }}</div>
+									{% endif %}
+								</div>
+								<div class="row py-4">
+									<div class="col">
+										<button class="btn btn-primary" type="submit">Procurar <i
+												class="bi bi-search"></i></button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="row">
+							<h4>por Jean Augusto Llamas da Silva (ADS - 5º Semestre)</h4>
+							<h5>
+								<img src="{{ url_for('static', filename='img/linkedin.png')}}"
+									style="height: 32px; margin-inline: 2px">Jean
+								Llamas
+								<img src="{{ url_for('static', filename='img/github.png')}}"
+									style="height: 32px; margin-inline: 2px">jeanllamas
+							</h5>
+						</div>
+					</div>
 				</div>
 			</div>
-		</form>
-		<script src="{{ url_for('static', filename='js/verificar_entrada.js') }}"></script>
+			<div class="col ps-4">
+				<div class="container-fluid d-flex flex-column" style="min-height: 95vh;">
+					<div class="d-flex flex-column justify-content-end" style="flex-grow: 1;">
+						<div class="text-center">
+							<h5>Tecnologias utilizadas</h5>
+							<div class="row py-3">
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/html.png') }}" alt="HTML"
+										style="max-width: 48px;">
+								</div>
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/javascript.png') }}" alt="JavaScript"
+										style="max-width: 48px;">
+								</div>
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/css.png') }}" alt="CSS"
+										style="max-width: 48px;">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/bootstrap.png') }}" alt="Bootstrap"
+										style="max-width: 48px;">
+								</div>
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/python.png') }}" alt="Python"
+										style="max-width: 48px;">
+								</div>
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/flask.png') }}" alt="Flask"
+										style="max-width: 48px;">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/sqlite.png') }}" alt="SQLite"
+										style="max-width: 128px;">
+								</div>
+								<div class="col">
+									<img src="{{ url_for('static', filename='img/beautifulsoup.png') }}" style="
+										max-width: 128px;" alt="BeautifulSoup">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		{% endblock %}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</div>
+	<script src="{{ url_for('static', filename='js/verificar_entrada.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>
